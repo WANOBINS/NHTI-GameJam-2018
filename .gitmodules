@@ -1,0 +1,3 @@
+[submodule "WBase"]
+	path = WBase
+	url = https://github.com/WANOBINS/WBase.git
