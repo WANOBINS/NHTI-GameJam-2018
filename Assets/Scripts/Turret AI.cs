@@ -23,13 +23,20 @@ public class TurretAI : MonoBehaviour
     {
         tBase = this.gameObject.transform.Find("Mount").gameObject;
         tBarrel = this.gameObject.transform.Find("Turret").gameObject;
-        isRed = (Random.Range(0, 1) == 0);
+
+        if (GameObject.FindGameObjectsWithTag("BluePlayer") != null)
+        {
+            isRed = (Random.Range(0, 1) == 0);
+        }
+        else isRed = true;
+        
 
         if (isRed)
         {
             tBarrel.GetComponent<Renderer>().material.color = Color.red;
         }
-	}
+        else tBarrel.GetComponent<Renderer>().material.color = Color.blue;
+    }
 
     // Update is called once per frame
     void Update()
