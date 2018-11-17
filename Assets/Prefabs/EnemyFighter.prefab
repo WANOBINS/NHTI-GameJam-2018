@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23496806668422990}
   - component: {fileID: 114017063384266330}
   - component: {fileID: 54403747415914416}
+  - component: {fileID: 65615874860256382}
   m_Layer: 0
   m_Name: EnemyFighter
   m_TagString: Fighter
@@ -99,6 +100,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65615874860256382
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1776328692426464}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5997005, y: 2.0853784, z: 1.9484164}
+  m_Center: {x: 0.09816754, y: -0.21148458, z: -0.32337266}
 --- !u!114 &114017063384266330
 MonoBehaviour:
   m_ObjectHideFlags: 1

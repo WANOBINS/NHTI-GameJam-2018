@@ -5,7 +5,7 @@ using UnityEngine;
 public class FighterAI : MonoBehaviour
 {
     public GameObject targetPlayer;
-    public float MoveSpeed;
+    public float MoveSpeed = 10;
 
     public float frequency = 20f;
     public float magnitude = 5f;
@@ -28,6 +28,7 @@ public class FighterAI : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        pos += transform.up * Time.deltaTime * MoveSpeed;
         transform.position = pos + transform.right * Mathf.Sin(Time.time * frequency) * magnitude;
 	}
 }
