@@ -47,12 +47,13 @@ public class EnemySpawner : MonoBehaviour
             if (SpawnTimer <= 0)
             {
                 //Check to see if we have enough obstacles on screen already
-               
-                    //Spawning of obstacle and adding force so it moves towards our player
-                    GameObject NewEnemy = Instantiate(Enemies[Random.Range(0, Enemies.Count)], transform.position, new Quaternion(90f,0f,90f,0));
+
+                //Spawning of obstacle and adding force so it moves towards our player
+                    GameObject NewEnemy = Instantiate(Enemies[Random.Range(0, Enemies.Count)], transform.position, transform.rotation);
                     NewEnemy.GetComponent<Rigidbody>().AddForce(-Vector3.right * Speed, ForceMode.Impulse);
                     //Set the spawn timer back to the CountDown time
                     SpawnTimer = SpawnCountDown;
+
             }
         }
     }

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 54477636074421472}
   - component: {fileID: 64784773719805490}
   - component: {fileID: 114301282028052188}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player1Ship
   m_TagString: RedPlayer
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4841777017746764}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun2
   m_TagString: Untagged
   m_Icon: {fileID: 7707008975528953803, guid: 0000000000000000d000000000000000, type: 0}
@@ -52,7 +52,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4383982623701484}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 33234962980632066}
   - component: {fileID: 23028548271742622}
   - component: {fileID: 64025480492542276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4023773102451702}
   - component: {fileID: 33284209123720624}
   - component: {fileID: 23658439450803496}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polySurface2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4865965531582926}
   - component: {fileID: 33706663215453232}
   - component: {fileID: 23299642019236596}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cockpit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4542153712759214}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun1
   m_TagString: Untagged
   m_Icon: {fileID: 7707008975528953803, guid: 0000000000000000d000000000000000, type: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 33702387623153948}
   - component: {fileID: 23450256066984130}
   - component: {fileID: 64203794934631096}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,8 +154,8 @@ GameObject:
   - component: {fileID: 4622257029833682}
   - component: {fileID: 33827466511695728}
   - component: {fileID: 23171820171117982}
-  - component: {fileID: 64245094683073864}
-  m_Layer: 0
+  - component: {fileID: 65408923587891136}
+  m_Layer: 8
   m_Name: polySurface1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 33882761677337882}
   - component: {fileID: 23538725762235964}
   - component: {fileID: 64176537499468474}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,20 +622,6 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300008, guid: ad8468c464baab240b043f7e229f9051, type: 3}
---- !u!64 &64245094683073864
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1919496673294378}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: ad8468c464baab240b043f7e229f9051, type: 3}
 --- !u!64 &64784773719805490
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -650,6 +636,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 0}
+--- !u!65 &65408923587891136
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919496673294378}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3840575, y: 0.8194375, z: 1.4694363}
+  m_Center: {x: -0.091538675, y: 0.13287635, z: 0}
 --- !u!114 &114301282028052188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -666,3 +664,7 @@ MonoBehaviour:
   bounds: {x: -93, y: 93, z: -40, w: 40}
   speed: 40
   tilt: 1
+  MyBullet: {fileID: 1260923322597584, guid: d558d9771df6e89499cac85d7ee296ba, type: 2}
+  Gun1: {fileID: 4542153712759214}
+  Gun2: {fileID: 4841777017746764}
+  ShotSpeed: 2000
