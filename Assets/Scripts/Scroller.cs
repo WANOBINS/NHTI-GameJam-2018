@@ -12,7 +12,7 @@ public class Scroller : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        savedOffset = GetComponent<Renderer>().sharedMaterial.GetTextureOffset("TestBG");
+        savedOffset = GetComponent<Renderer>().sharedMaterial.GetTextureOffset("_MainTex");
         tileSize = transform.lossyScale.y;
     }
 	
@@ -21,6 +21,6 @@ public class Scroller : MonoBehaviour {
     {
         float scroll_Y = Mathf.Repeat(Time.time * scrollSpeed, tileSize);
         Vector2 offset = new Vector2(savedOffset.x, scroll_Y);
-        GetComponent<Renderer>().sharedMaterial.SetTextureOffset("TestBG", offset);
+        GetComponent<Renderer>().sharedMaterial.SetTextureOffset("_MainTex", offset);
     }
 }
