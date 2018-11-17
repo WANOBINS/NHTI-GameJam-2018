@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Util;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -56,17 +57,35 @@ public class ScoreManager : MonoBehaviour
     public const string SaveFile = SaveDirectory + "./HiScores.json";
     public int CurrentScore = 0;
 
-    public List<HiScore> hiScores;
+    public List<HiScore> hiScores
+    {
+        get
+        {
+            return ConvertToHiScoresList(_hiScores);
+        }
+    }
+
+    private List<HiScore> ConvertToHiScoresList(SortedDictionary<string, int> hiScores)
+    {
+        List<HiScore> output = new List<HiScore>();
+        foreach(KeyValuePair<string,int> keyValuePair in hiScores)
+        {
+            output.Add(new HiScore(keyValuePair.Key, keyValuePair.Value));
+        }
+        return output;
+    }
+
+    private SortedDictionary<string, int> _hiScores;
 
     public FileStream FileStream;
 
     private void Start()
     {
-        hiScores = new List<HiScore>();
+        _hiScores = new SortedDictionary<string, int>();
         Directory.CreateDirectory(SaveDirectory);
         if (!File.Exists(SaveFile))
         {
-            hiScores = DefaultHiScores.ToList();
+            _hiScores = ConvertToSortedDict(DefaultHiScores.ToList());
 
             File.Create(SaveFile).Close();
             SaveScores();
@@ -77,6 +96,25 @@ public class ScoreManager : MonoBehaviour
         }
 
 
+    }
+
+    private SortedDictionary<string, int> ConvertToSortedDict(List<HiScore> list)
+    {
+        SortedDictionary<string, int> output = new SortedDictionary<string, int>();
+        foreach(HiScore hiScore in list)
+        {
+            output.Add(hiScore.Initials, hiScore.Score);
+        }
+        return output;
+    }
+
+    public void SaveScore(HiScore hiScore)
+    {
+        if(hiScore.Score > hiScores.FindLowest().Score)
+        {
+            hiScores.Remove(hiScores.FindLowest());
+            hiScores.Add(hiScore);
+        }
     }
 
     public void ResetScore()
