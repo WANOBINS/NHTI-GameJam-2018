@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using WBase.Core.Extensions;
 using WBase.Core.Util;
 
 public class ScoreManager : MonoBehaviour
@@ -78,11 +79,53 @@ public class ScoreManager : MonoBehaviour
         HiScoreFile = File.Open(SaveFilePath, FileMode.OpenOrCreate);
         if (HiScoreFile.Length == 0)
         {
-
+            ResetHiScores();
         }
         else
         {
+            try
+            {
+                byte[] buffer = new byte[int.MaxValue];
 
+                HiScoreFile.Read(buffer, 0, (int)HiScoreFile.Length);
+                int NumScores = BitConverter.ToInt32(buffer, 0);
+                buffer = buffer.SubBytes(ByteUtil.BytesIn(typeof(int)));
+                for (int i = 0; i < NumScores; i++)
+                {
+                    int InitialsLength = BitConverter.ToInt32(buffer, 0);
+                    byte[] SingleScoreBuffer = new byte[2 * ByteUtil.BytesIn(typeof(int)) + (InitialsLength * ByteUtil.BytesIn(typeof(char)))];
+                    int j = 0;
+                    for (; j < SingleScoreBuffer.Length; j++)
+                    {
+                        SingleScoreBuffer[j] = buffer[j];
+                    }
+                    buffer = buffer.SubBytes(j);
+                    HiScores[i] = HiScore.FromBytes(SingleScoreBuffer);
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.LogError("Exception loading HiScores, resetting HiScores");
+                Debug.LogError(ex.Message + Environment.NewLine + ex.StackTrace);
+                ResetHiScores();
+            }
+        }
+    }
+
+    private void ResetHiScores()
+    {
+        HiScores = DefaultHiScores;
+
+        int FileOffSet = 0;
+
+        HiScoreFile.Write(BitConverter.GetBytes(MaxHiScores), FileOffSet, ByteUtil.BytesIn(typeof(int)));
+        FileOffSet += ByteUtil.BytesIn(typeof(int));
+
+        foreach (HiScore hiScore in HiScores)
+        {
+            byte[] SaveBytes = hiScore.ToBytes();
+            HiScoreFile.Write(SaveBytes, FileOffSet, SaveBytes.Length);
+            FileOffSet += SaveBytes.Length;
         }
     }
 }
