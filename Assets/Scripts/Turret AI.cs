@@ -6,7 +6,7 @@ public class TurretAI : MonoBehaviour
 {
     public bool isRed = false;
     public float speed = 1f;
-    public float bulletSpeed = 1f;
+   
     
     [SerializeField] private float range = 1f;
 
@@ -15,11 +15,20 @@ public class TurretAI : MonoBehaviour
     GameObject targetPlayer = null;
     GameObject Bullet = null;
     GameObject BulletSpawn;
+    GameObject tBase;
+    GameObject tBarrel;
     
 	// Use this for initialization
 	void Start ()
     {
+        tBase = this.gameObject.transform.Find("Mount").gameObject;
+        tBarrel = this.gameObject.transform.Find("Turret").gameObject;
         isRed = (Random.Range(0, 1) == 0);
+
+        if (isRed)
+        {
+            tBarrel.GetComponent<Renderer>().material.color = Color.red;
+        }
 	}
 
     // Update is called once per frame
@@ -50,9 +59,7 @@ public class TurretAI : MonoBehaviour
             if (!Bullet)
             {
                 Fire();
-            }
-            else Bullet.transform.position += Bullet.transform. position * (bulletSpeed * Time.deltaTime);           
-       
+            }    
         }
     }
 
