@@ -2,7 +2,53 @@ fileFormatVersion: 2
 guid: ad8468c464baab240b043f7e229f9051
 ModelImporter:
   serializedVersion: 22
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: Body
+    100002: camera1
+    100004: Cockpit
+    100006: directionalLight2
+    100008: LeftGun
+    100010: polySurface1
+    100012: polySurface2
+    100014: RightGun
+    100016: //RootNode
+    100018: transform1
+    100020: Wings
+    400000: Body
+    400002: camera1
+    400004: Cockpit
+    400006: directionalLight2
+    400008: LeftGun
+    400010: polySurface1
+    400012: polySurface2
+    400014: RightGun
+    400016: //RootNode
+    400018: transform1
+    400020: Wings
+    2100000: blinn2
+    2100002: blinn5
+    2100004: blinn1
+    2100006: blinn4
+    2100008: blinn3
+    2300000: Cockpit
+    2300002: LeftGun
+    2300004: polySurface1
+    2300006: polySurface2
+    2300008: RightGun
+    2300010: Wings
+    3300000: Cockpit
+    3300002: LeftGun
+    3300004: polySurface1
+    3300006: polySurface2
+    3300008: RightGun
+    3300010: Wings
+    4300000: polySurface1
+    4300002: polySurface2
+    4300004: Cockpit
+    4300006: LeftGun
+    4300008: RightGun
+    4300010: Wings
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1

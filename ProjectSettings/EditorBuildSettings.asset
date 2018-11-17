@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Colby's Scene.unity
     guid: 2083424a93f4c5842bd0cd889cd47853
+  - enabled: 1
+    path: Assets/Scenes/Whatever.unity
+    guid: 69a36e0cfb567a64ca03c709d3c02fd4

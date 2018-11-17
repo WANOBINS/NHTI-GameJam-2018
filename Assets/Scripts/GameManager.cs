@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public bool DebugQuit = true;
+    public bool GameOver = false;
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(transform);
-        SceneManager.LoadScene("Colby's Scene", LoadSceneMode.Additive); //Allows me to work in my scene and have it be merged into the main scene at runtime
-	}
+        SceneManager.LoadScene("Colby's Scene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Whatever", LoadSceneMode.Additive);//Allows me to work in my scene and have it be merged into the main scene at runtime
+    }
 	
 	// Update is called once per frame
 	void Update () {
