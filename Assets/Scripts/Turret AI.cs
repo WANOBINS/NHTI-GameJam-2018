@@ -6,12 +6,15 @@ public class TurretAI : MonoBehaviour
 {
     public bool isRed = false;
     public float speed = 1f;
+    public float bulletSpeed = 1f;
     
     [SerializeField] private float range = 1f;
 
     Quaternion aimRotation;
     Vector3 lastTargetPos = Vector3.zero;
     GameObject targetPlayer = null;
+    GameObject Bullet = null;
+    GameObject BulletSpawn;
     
 	// Use this for initialization
 	void Start ()
@@ -43,6 +46,18 @@ public class TurretAI : MonoBehaviour
             {
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, aimRotation, speed * Time.deltaTime);
             }
+
+            if (!Bullet)
+            {
+                Fire();
+            }
+            else Bullet.transform.position += Bullet.transform. position * (bulletSpeed * Time.deltaTime);           
+       
         }
     }
+
+    private void Fire()
+    {
+        Bullet = Instantiate(Bullet, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
+    }    
 }

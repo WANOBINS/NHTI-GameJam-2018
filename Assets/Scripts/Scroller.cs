@@ -22,5 +22,5 @@ public class Scroller : MonoBehaviour {
         float scroll_X = Mathf.Repeat(Time.time * scrollSpeed, tileSize);
         Vector2 offset = new Vector2( scroll_X, savedOffset.y);
         GetComponent<Renderer>().sharedMaterial.SetTextureOffset("_MainTex", offset);
-    }
+    }    
 }
