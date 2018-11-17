@@ -4,18 +4,27 @@ ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: Mount
-    100002: //RootNode
-    100004: Turret
+    100002: polySurface1
+    100004: polySurface2
+    100006: transform1
+    100008: //RootNode
+    100010: Turret
     400000: Mount
-    400002: //RootNode
-    400004: Turret
+    400002: polySurface1
+    400004: polySurface2
+    400006: transform1
+    400008: //RootNode
+    400010: Turret
     2100000: lambert1
     2300000: Mount
-    2300002: Turret
+    2300002: polySurface1
+    2300004: polySurface2
     3300000: Mount
-    3300002: Turret
+    3300002: polySurface1
+    3300004: polySurface2
     4300000: Mount
-    4300002: Turret
+    4300002: polySurface1
+    4300004: polySurface2
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -66,7 +75,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
