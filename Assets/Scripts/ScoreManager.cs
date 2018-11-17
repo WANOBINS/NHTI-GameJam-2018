@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using WBase.Core.Extensions;
-using WBase.Core.Util;
 
 public class ScoreManager : MonoBehaviour
 {
     public class HiScore
     {
+
         public string Initials { get; private set; }
         public int Score { get; private set; }
 
@@ -20,27 +21,8 @@ public class ScoreManager : MonoBehaviour
             this.Score = Score;
         }
 
-        public byte[] ToBytes()
-        {
-            List<byte> bytes = new List<byte>();
-            bytes.AddRange(System.Text.Encoding.ASCII.GetBytes(Initials));
-            bytes.AddRange(BitConverter.GetBytes(Score));
-            return bytes.ToArray();
-        }
-
-        public static HiScore FromBytes(byte[] bytes)
-        {
-            byte[] workingBytes = bytes;
-            HiScore output = new HiScore();
-            output.Initials = BitConverter.ToString(workingBytes, 0);
-            output.Score = BitConverter.ToInt32(workingBytes, output.Initials.Length * ByteUtil.BytesIn(typeof(char)));
-            return output;
-        }
     }
 
-    public int CurrentScore = 0;
-    private const int MaxHiScores = 25;
-    public const string SaveFilePath = "./SaveData/HiScores.dat";
     public static readonly HiScore[] DefaultHiScores = new HiScore[MaxHiScores]
     {
         new HiScore("GOD", 50000),
@@ -69,63 +51,51 @@ public class ScoreManager : MonoBehaviour
         new HiScore("ABC", 300),
         new HiScore("BAD", 200)
     };
+    public const int MaxHiScores = 25;
+    public const string SaveDirectory = "./SaveData/";
+    public const string SaveFile = SaveDirectory + "./HiScores.json";
+    public int CurrentScore = 0;
 
-    private FileStream HiScoreFile;
+    public List<HiScore> hiScores;
 
-    public HiScore[] HiScores = new HiScore[25];
+    public FileStream FileStream;
 
-    public ScoreManager()
+    private void Start()
     {
-        HiScoreFile = File.Open(SaveFilePath, FileMode.OpenOrCreate);
-        if (HiScoreFile.Length == 0)
+        hiScores = new List<HiScore>();
+        Directory.CreateDirectory(SaveDirectory);
+        if (!File.Exists(SaveFile))
         {
-            ResetHiScores();
+            hiScores = DefaultHiScores.ToList();
+
+            File.Create(SaveFile).Close();
+            SaveScores();
         }
         else
         {
-            try
-            {
-                byte[] buffer = new byte[int.MaxValue];
-
-                HiScoreFile.Read(buffer, 0, (int)HiScoreFile.Length);
-                int NumScores = BitConverter.ToInt32(buffer, 0);
-                buffer = buffer.SubBytes(ByteUtil.BytesIn(typeof(int)));
-                for (int i = 0; i < NumScores; i++)
-                {
-                    int InitialsLength = BitConverter.ToInt32(buffer, 0);
-                    byte[] SingleScoreBuffer = new byte[2 * ByteUtil.BytesIn(typeof(int)) + (InitialsLength * ByteUtil.BytesIn(typeof(char)))];
-                    int j = 0;
-                    for (; j < SingleScoreBuffer.Length; j++)
-                    {
-                        SingleScoreBuffer[j] = buffer[j];
-                    }
-                    buffer = buffer.SubBytes(j);
-                    HiScores[i] = HiScore.FromBytes(SingleScoreBuffer);
-                }
-            }
-            catch(Exception ex)
-            {
-                Debug.LogError("Exception loading HiScores, resetting HiScores");
-                Debug.LogError(ex.Message + Environment.NewLine + ex.StackTrace);
-                ResetHiScores();
-            }
+            LoadScores();
         }
+
+
     }
 
-    private void ResetHiScores()
+    public void ResetScore()
     {
-        HiScores = DefaultHiScores;
+        CurrentScore = 0;
+    }
 
-        int FileOffSet = 0;
+    public void AddScore(int points)
+    {
+        CurrentScore += points;
+    }
 
-        HiScoreFile.Write(BitConverter.GetBytes(MaxHiScores), FileOffSet, ByteUtil.BytesIn(typeof(int)));
-        FileOffSet += ByteUtil.BytesIn(typeof(int));
+    private void LoadScores()
+    {
+        hiScores = Newtonsoft.Json.JsonConvert.DeserializeObject<List<HiScore>>(File.ReadAllText(SaveFile));
+    }
 
-        foreach (HiScore hiScore in HiScores)
-        {
-            byte[] SaveBytes = hiScore.ToBytes();
-            HiScoreFile.Write(SaveBytes, FileOffSet, SaveBytes.Length);
-            FileOffSet += SaveBytes.Length;
-        }
+    private void SaveScores()
+    {
+        File.WriteAllText(SaveFile, Newtonsoft.Json.JsonConvert.SerializeObject(hiScores));
     }
 }
