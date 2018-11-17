@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class Scroller : MonoBehaviour {
 
-    public float scrollSpeed;
-    public float tileSize;
+    public float scrollSpeed;    
 
-    private Vector3 startPos;
+    private Vector2 offset;
 
     // Use this for initialization
     void Start ()
     {
-        startPos = transform.position;
-        tileSize = transform.lossyScale.y;
+        offset = GetComponent<Renderer>().sharedMaterial.GetTextureOffset("TestBG");
 
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        float newPos = Mathf.Repeat(Time.time * scrollSpeed, tileSize);
-        transform.position = startPos + Vector3.forward * newPos;
+       
     }
 }
