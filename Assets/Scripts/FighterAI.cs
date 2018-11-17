@@ -21,6 +21,8 @@ public class FighterAI : MonoBehaviour
         frequency = Random.Range(1.2f, 2.2f);
         magnitude = Random.Range(10f, 15f);
 
+        transform.rotation = Quaternion.Euler(90f, 0, 90f);
+
     }
 	
 	// Update is called once per frame
