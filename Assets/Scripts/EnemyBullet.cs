@@ -15,9 +15,13 @@ public class EnemyBullet : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "RedPlayer" || other.tag == "BluePlayer" || other.tag == "Boundry")
+        if (other.tag == "RedPlayer" || other.tag == "BluePlayer")
         {
             Destroy(other);
+            Destroy(gameObject);
+        }
+        else if (other.tag == "boundry")
+        {
             Destroy(gameObject);
         }
     }
