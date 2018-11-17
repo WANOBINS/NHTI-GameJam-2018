@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 3040580bf6c9e164dab1e8240ed9415b
+  - enabled: 1
+    path: Assets/Scenes/Colby's Scene.unity
+    guid: 2083424a93f4c5842bd0cd889cd47853
