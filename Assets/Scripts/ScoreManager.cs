@@ -63,6 +63,10 @@ public class ScoreManager : MonoBehaviour
         {
             return ConvertToHiScoresList(_hiScores);
         }
+        set
+        {
+            _hiScores = ConvertToSortedDict(value);
+        }
     }
 
     private List<HiScore> ConvertToHiScoresList(SortedDictionary<string, int> hiScores)
