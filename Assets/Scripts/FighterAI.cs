@@ -17,11 +17,15 @@ public class FighterAI : MonoBehaviour
     {
         IsRed = (Random.Range(0, 1) == 0);
         pos = transform.position;
-	}
+
+        frequency = Random.Range(1.2f, 2.2f);
+        magnitude = Random.Range(10f, 15f);
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        transform.position = pos + transform.forward * Mathf.Sin(Time.time * frequency) * magnitude;
+        transform.position = pos + transform.right * Mathf.Sin(Time.time * frequency) * magnitude;
 	}
 }
