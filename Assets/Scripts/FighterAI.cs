@@ -18,8 +18,8 @@ public class FighterAI : MonoBehaviour
         IsRed = (Random.Range(0, 1) == 0);
         pos = transform.position;
 
-        frequency = Random.Range(1.2f, 2.2f);
-        magnitude = Random.Range(10f, 15f);
+        //frequency = Random.Range(1.2f, 2.2f);
+        //magnitude = Random.Range(20f, 30f);
 
         transform.rotation = Quaternion.Euler(90f, 0, 90f);
 

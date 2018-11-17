@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPlayer: {fileID: 0}
-  MoveSpeed: 0
+  MoveSpeed: 10
   frequency: 1.42
-  magnitude: 10
+  magnitude: 30
   IsRed: 0
