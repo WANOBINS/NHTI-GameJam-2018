@@ -57,39 +57,17 @@ public class ScoreManager : MonoBehaviour
     public const string SaveFile = SaveDirectory + "./HiScores.json";
     public int CurrentScore = 0;
 
-    public List<HiScore> hiScores
-    {
-        get
-        {
-            return ConvertToHiScoresList(_hiScores);
-        }
-        set
-        {
-            _hiScores = ConvertToSortedDict(value);
-        }
-    }
-
-    private List<HiScore> ConvertToHiScoresList(SortedDictionary<string, int> hiScores)
-    {
-        List<HiScore> output = new List<HiScore>();
-        foreach(KeyValuePair<string,int> keyValuePair in hiScores)
-        {
-            output.Add(new HiScore(keyValuePair.Key, keyValuePair.Value));
-        }
-        return output;
-    }
-
-    private SortedDictionary<string, int> _hiScores;
+    public List<HiScore> hiScores;
 
     public FileStream FileStream;
 
     private void Start()
     {
-        _hiScores = new SortedDictionary<string, int>();
+        hiScores = new List<HiScore>();
         Directory.CreateDirectory(SaveDirectory);
         if (!File.Exists(SaveFile))
         {
-            _hiScores = ConvertToSortedDict(DefaultHiScores.ToList());
+            hiScores = DefaultHiScores.ToList<HiScore>();
 
             File.Create(SaveFile).Close();
             SaveScores();
