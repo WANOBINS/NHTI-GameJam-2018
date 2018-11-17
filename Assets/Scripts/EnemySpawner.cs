@@ -50,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
                
                     //Spawning of obstacle and adding force so it moves towards our player
                     GameObject NewEnemy = Instantiate(Enemies[Random.Range(0, Enemies.Count)], transform.position, transform.rotation);
-                    NewEnemy.GetComponent<Rigidbody>().AddForce(-Vector3.forward * Speed, ForceMode.Impulse);
+                    NewEnemy.GetComponent<Rigidbody>().AddForce(-Vector3.right * Speed, ForceMode.Impulse);
                     //Set the spawn timer back to the CountDown time
                     SpawnTimer = SpawnCountDown;
             }
