@@ -78,14 +78,24 @@ public class TurretAI : MonoBehaviour
         if(other.gameObject.tag == "P1Bullet" && isRed)
         {
             health--;
-            if(health <= 0)
+            Destroy(other.gameObject);
+            if (health <= 0)
             {
                 mySM.AddScore(EnumPlayer.Player1, 300);
+                Destroy(gameObject);
+                
             }
         }
         else if (other.gameObject.tag == "P2Bullet" && !isRed)
         {
             health--;
+            Destroy(other.gameObject);
+            if (health <= 0)
+            {
+                mySM.AddScore(EnumPlayer.Player2, 300);
+                Destroy(gameObject);
+                
+            }
         }
     }
     private void Fire()
