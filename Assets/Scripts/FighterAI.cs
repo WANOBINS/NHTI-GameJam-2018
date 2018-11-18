@@ -78,7 +78,7 @@ public class FighterAI : MonoBehaviour
             Destroy(other.gameObject);
             if (health <= 0)
             {
-                mySM.AddScore(EnumPlayer.Player1, 300);
+                mySM.AddScore(EnumPlayer.Player1, 100);
                 Destroy(gameObject);
 
             }
@@ -90,7 +90,7 @@ public class FighterAI : MonoBehaviour
             Destroy(other.gameObject);
             if (health <= 0)
             {
-                mySM.AddScore(EnumPlayer.Player2, 300);
+                mySM.AddScore(EnumPlayer.Player2, 100);
                 Destroy(gameObject);
 
             }

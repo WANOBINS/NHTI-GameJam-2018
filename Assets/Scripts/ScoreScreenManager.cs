@@ -11,7 +11,7 @@ public class ScoreScreenManager : MonoBehaviour {
     Text HiScoresList;
     Text Prompt;
     GameObject Canvas;
-    private const string P1Prompt = "Player 1, enter your initials:";
+    private const string P1Prompt = "Enter your team initials:";
     private const string P2Prompt = "Player 2, enter your initials:";
 
     public void HideUI()

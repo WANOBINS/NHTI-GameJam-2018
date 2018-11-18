@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Assets.Scripts.Util;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +9,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     public bool DebugQuit = true;
     public bool GameOver = false;
+
+    public int P1Lives = 3;
+    public int P2Lives = 3;
+
     public ScoreManager ScoreManager;
     private ScoreScreenManager scoreScreenManager;
 
@@ -35,6 +41,16 @@ public class GameManager : MonoBehaviour {
 #else
                 Application.Quit();
 #endif
+        }
+
+        if(P1Lives <= 0 && P2Lives <= 0)
+        {
+            GameOver = true;
+            if(ScoreManager.P1CurrentScore + ScoreManager.P2CurrentScore >= ScoreManager.hiScores.Last().Score)
+            {
+                ScoreManager.AddScore(EnumPlayer.Player1, ScoreManager.P2CurrentScore);
+                scoreScreenManager.SaveP1Score();
+            }
         }
     }
 }
