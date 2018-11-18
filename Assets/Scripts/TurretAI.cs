@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Util;
 using UnityEngine;
 
 public class TurretAI : MonoBehaviour
@@ -17,12 +18,14 @@ public class TurretAI : MonoBehaviour
     public GameObject BulletSpawn;
     public GameObject tBase;
     public GameObject tBarrel;
+    public ScoreManager mySM;
     
 	// Use this for initialization
 	void Start ()
     {
         tBase = this.gameObject.transform.Find("Mount").gameObject;
         tBarrel = this.gameObject.transform.Find("Turret").gameObject;
+        mySM = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreManager>();
 
         if (GameObject.FindGameObjectsWithTag("BluePlayer") != null)
         {
@@ -70,6 +73,21 @@ public class TurretAI : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "P1Bullet" && isRed)
+        {
+            health--;
+            if(health <= 0)
+            {
+                mySM.AddScore(EnumPlayer.Player1, 300);
+            }
+        }
+        else if (other.gameObject.tag == "P2Bullet" && !isRed)
+        {
+            health--;
+        }
+    }
     private void Fire()
     {
         Bullet = Instantiate(Bullet, BulletSpawn.transform.position, BulletSpawn.transform.rotation);

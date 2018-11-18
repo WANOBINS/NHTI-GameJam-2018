@@ -24,13 +24,6 @@ public class ScoreManager : MonoBehaviour
 
     }
 
-    public enum Player
-    {
-        Player1,
-        Player2,
-        Both
-    }
-
     public static readonly HiScore[] DefaultHiScores = new HiScore[MaxHiScores]
     {
         new HiScore("GOD", 50000),
@@ -107,17 +100,17 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public void ResetScore(Player player)
+    public void ResetScore(EnumPlayer player)
     {
         switch (player)
         {
-            case Player.Player1:
+            case EnumPlayer.Player1:
                 P1CurrentScore = 0;
                 break;
-            case Player.Player2:
+            case EnumPlayer.Player2:
                 P2CurrentScore = 0;
                 break;
-            case Player.Both:
+            case EnumPlayer.Both:
                 P1CurrentScore = 0;
                 P2CurrentScore = 0;
                 break;
@@ -126,17 +119,17 @@ public class ScoreManager : MonoBehaviour
         
     }
 
-    public void AddScore(Player player, int points)
+    public void AddScore(EnumPlayer player, int points)
     {
         switch (player)
         {
-            case Player.Player1:
+            case EnumPlayer.Player1:
                 P1CurrentScore += points;
                 break;
-            case Player.Player2:
+            case EnumPlayer.Player2:
                 P2CurrentScore += points;
                 break;
-            case Player.Both:
+            case EnumPlayer.Both:
                 P1CurrentScore += points;
                 P2CurrentScore += points;
                 break;

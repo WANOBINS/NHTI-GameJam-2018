@@ -41,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
         }
         
 
-        if (myGM.P1GameOver == false && myGM.P2GameOver == false)
+        if (myGM.GameOver == false)
         {
             //When SpawnTimer is zero we spawn an Obstacle
             if (SpawnTimer <= 0)
