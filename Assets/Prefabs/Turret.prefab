@@ -344,8 +344,11 @@ MonoBehaviour:
   health: 10
   rand: 0
   range: 100
+  bulletSpeed: 10
   targetPlayer: {fileID: 0}
-  Bullet: {fileID: 1501148733780066, guid: 683dce6c86d34064e8c53fc2292462ae, type: 2}
+  Bullet: {fileID: 0}
+  BulletPrefab: {fileID: 1501148733780066, guid: 683dce6c86d34064e8c53fc2292462ae,
+    type: 2}
   BulletSpawn: {fileID: 1180401494494942}
   mySM: {fileID: 0}
 --- !u!114 &114694145625650888

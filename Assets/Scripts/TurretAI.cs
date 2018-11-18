@@ -11,7 +11,7 @@ public class TurretAI : MonoBehaviour
     public int rand;
     
     [SerializeField] private float range = 100f;
-    [SerializeField] private float bulletSpeed = 100f;
+    [SerializeField] private float bulletSpeed = 10f;
 
     Quaternion aimRotation;
     Vector3 lastTargetPos = Vector3.zero;
@@ -21,9 +21,22 @@ public class TurretAI : MonoBehaviour
     public GameObject BulletSpawn;
    
     public ScoreManager mySM;
-    
-	// Use this for initialization
-	void Start ()
+    private bool isVisible = false;
+
+    private void OnBecameVisible()
+    {
+        isVisible = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isVisible = false;
+    }
+
+
+
+    // Use this for initialization
+    void Start ()
     {
        
         mySM = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreManager>();
@@ -73,7 +86,7 @@ public class TurretAI : MonoBehaviour
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, aimRotation, speed * Time.deltaTime);
             }
 
-            if (!Bullet)
+            if (!Bullet && isVisible)
             {
                 Fire();
             }    
@@ -112,6 +125,6 @@ public class TurretAI : MonoBehaviour
     private void Fire()
     {
         Bullet = Instantiate(BulletPrefab, BulletSpawn.transform.position, this.transform.rotation); // set to turrets rotation
-        Bullet.GetComponent<Rigidbody>().velocity = (transform.forward * bulletSpeed) + GetComponentInParent<Rigidbody>().velocity;
+        Bullet.GetComponent<Rigidbody>().velocity = (transform.forward * bulletSpeed) + transform.parent.GetComponent<Rigidbody>().velocity;
     }    
 }
