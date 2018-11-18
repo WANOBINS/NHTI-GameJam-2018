@@ -60,11 +60,26 @@ public class TurretAI : MonoBehaviour
             this.GetComponent<Renderer>().material.color = Color.blue;
         }
     }
-
+    void ResetMat()
+    {
+        if (isRed)
+        {
+            this.GetComponent<Renderer>().material.color = Color.red;
+        }
+        else
+        {
+            this.GetComponent<Renderer>().material.color = Color.blue;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) <= range)
+        if (this.GetComponent<Renderer>().material.color == Color.white)
+        {
+            Invoke("ResetMat", 0.05f);
+        }
+
+        if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) <= range)
             {
                 targetPlayer = GameObject.FindGameObjectWithTag("RedPlayer");
             }
@@ -98,6 +113,7 @@ public class TurretAI : MonoBehaviour
     {
         if(other.gameObject.tag == "P1Bullet" && isRed)
         {
+            this.GetComponent<Renderer>().material.color = Color.white;
             health--;
             Destroy(other.gameObject);
             if (health <= 0)
@@ -109,6 +125,7 @@ public class TurretAI : MonoBehaviour
         }
         else if (other.gameObject.tag == "P2Bullet" && !isRed)
         {
+            this.GetComponent<Renderer>().material.color = Color.white;
             health--;
             Destroy(other.gameObject);
             if (health <= 0)

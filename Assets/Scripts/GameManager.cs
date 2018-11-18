@@ -93,10 +93,23 @@ public class GameManager : MonoBehaviour {
 #endif
         }
 
-        
 
-        P1LivesText.text = "x" + P1Lives.ToString();
-        P2LivesText.text = "x" + P2Lives.ToString();
+        if (P1Lives > 0)
+        {
+            P1LivesText.text = "x" + P1Lives.ToString();
+        }
+        else
+        {
+            P1LivesText.text = "GAME OVER";
+        }
+        if (P2Lives > 0)
+        {
+            P2LivesText.text = "x" + P2Lives.ToString();
+        }
+        else
+        {
+            P2LivesText.text = "GAME OVER";
+        }
 
         if (P1Lives <= 0 && P2Lives <= 0)
         {

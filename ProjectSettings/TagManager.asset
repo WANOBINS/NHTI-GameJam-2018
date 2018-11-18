@@ -10,6 +10,7 @@ TagManager:
   - BluePlayer
   - P1Bullet
   - P2Bullet
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

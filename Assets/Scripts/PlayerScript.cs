@@ -104,5 +104,17 @@ public class PlayerScript : MonoBehaviour
                 myGM.PlayerDied(gameObject);
             }
         }
+        if (other.gameObject.tag == "EnemyBullet")
+        {
+            if (Player == 1)
+            {
+                myGM.PlayerDied(gameObject);
+            }
+
+            if (Player == 2)
+            {
+                myGM.PlayerDied(gameObject);
+            }
+        }
     }
 }
