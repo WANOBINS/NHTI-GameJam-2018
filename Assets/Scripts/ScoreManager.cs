@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,10 +10,12 @@ using WBase.Core.Extensions;
 
 public class ScoreManager : MonoBehaviour
 {
+    [JsonObject]
     public class HiScore
     {
-
+        [JsonProperty]
         public string Initials { get; private set; }
+        [JsonProperty]
         public int Score { get; private set; }
 
         public HiScore() { }
@@ -58,7 +61,7 @@ public class ScoreManager : MonoBehaviour
     public const string SaveFile = SaveDirectory + "./HiScores.json";
     public int P1CurrentScore = 0;
     public int P2CurrentScore = 0;
-
+    
     public List<HiScore> hiScores;
 
     public FileStream FileStream;
@@ -70,7 +73,6 @@ public class ScoreManager : MonoBehaviour
         if (!File.Exists(SaveFile))
         {
             hiScores = DefaultHiScores.ToList();
-
             File.Create(SaveFile).Close();
             SaveScores();
         }
@@ -129,23 +131,23 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private void LoadScores()
+    public void LoadScores()
     {
-        hiScores = Newtonsoft.Json.JsonConvert.DeserializeObject<List<HiScore>>(File.ReadAllText(SaveFile));
+        hiScores = JsonConvert.DeserializeObject<HiScore[]>(File.ReadAllText(SaveFile)).ToList<HiScore>();
         SortScores();
     }
 
-    private void SaveScores()
+    public void SaveScores()
     {
         SortScores();
-        File.WriteAllText(SaveFile, Newtonsoft.Json.JsonConvert.SerializeObject(hiScores));
+        File.WriteAllText(SaveFile, JsonConvert.SerializeObject(hiScores));
     }
 
     private void SortScores()
     {
         hiScores.Sort((x, y) => {
 
-            int result = x.Score.CompareTo(y.Score);
+            int result = -x.Score.CompareTo(y.Score);
 
             if(result == 0 && x.Initials != null && y.Initials != null)
             {
@@ -158,8 +160,9 @@ public class ScoreManager : MonoBehaviour
         });
     }
 
-    private string GetHiScoresString()
+    public string GetHiScoresString()
     {
+        SortScores();
         StringBuilder stringBuilder = new StringBuilder();
         foreach(HiScore hiScore in hiScores)
         {

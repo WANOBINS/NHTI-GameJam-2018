@@ -64,10 +64,11 @@ public class TurretAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) <= range)
-        {
-            targetPlayer = GameObject.FindGameObjectWithTag("RedPlayer");
-        }
+            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) <= range)
+            {
+                targetPlayer = GameObject.FindGameObjectWithTag("RedPlayer");
+            }
+   
         else if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) <= range)
         {
             targetPlayer = GameObject.FindGameObjectWithTag("BluePlayer");

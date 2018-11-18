@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreScreenManager : MonoBehaviour {
-    ScoreManager ScoreManager;
+    ScoreManager scoreManager;
     EnumPlayer player = EnumPlayer.Neither;
     Text HiScoresList;
     Text Prompt;
@@ -22,7 +23,7 @@ public class ScoreScreenManager : MonoBehaviour {
     public void ShowUI()
     {
         Canvas.SetActive(true);
-        HiScoresList.text = ScoreManager.hiScores.ToString();
+        HiScoresList.text = scoreManager.GetHiScoresString();
     }
 
     // Awake is called when the script instance is being loaded
@@ -31,12 +32,15 @@ public class ScoreScreenManager : MonoBehaviour {
         Canvas = GameObject.Find("HiScoresCanvas");
         Prompt = GameObject.Find("Prompt").GetComponent<Text>();
         HiScoresList = GameObject.Find("HiScores").GetComponent<Text>();
+        scoreManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreManager>();
     }
 
     // Use this for initialization
     void Start () {
-        ScoreManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreManager>();
-	}
+        
+    }
+
+
 
     public void SaveP1Score()
     {
@@ -52,18 +56,8 @@ public class ScoreScreenManager : MonoBehaviour {
         ShowUI();
     }
 
-    public void SaveScore(string Initials)
+    public void SaveScore()
     {
-        switch (player)
-        {
-            case EnumPlayer.Player1:
-                ScoreManager.SaveScore(new ScoreManager.HiScore(Initials, ScoreManager.P1CurrentScore));
-                break;
-            case EnumPlayer.Player2:
-                ScoreManager.SaveScore(new ScoreManager.HiScore(Initials, ScoreManager.P2CurrentScore));
-                break;
-            default:
-                break;
-        }
+        scoreManager.SaveScore(new ScoreManager.HiScore(Canvas.transform.Find("Initials").Find("Text").GetComponent<Text>().text, scoreManager.P1CurrentScore));
     }
 }

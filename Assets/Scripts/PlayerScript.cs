@@ -95,8 +95,13 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.tag == "Fighter")
         {
             if(Player == 1)
-            {
-                myGM.P1Lives--;
+            {   
+                myGM.PlayerDied(gameObject);
+            }
+
+            if (Player == 2)
+            {              
+                myGM.PlayerDied(gameObject);
             }
         }
     }
