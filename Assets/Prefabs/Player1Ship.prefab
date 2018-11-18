@@ -661,10 +661,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: 1
   myRB: {fileID: 0}
-  bounds: {x: -70, y: 70, z: -28, w: 40}
+  bounds: {x: -72, y: 72, z: -28, w: 40}
   speed: 40
   tilt: 1
   MyBullet: {fileID: 1260923322597584, guid: d558d9771df6e89499cac85d7ee296ba, type: 2}
   Gun1: {fileID: 4542153712759214}
   Gun2: {fileID: 4841777017746764}
+  myGM: {fileID: 0}
   ShotSpeed: 5000
