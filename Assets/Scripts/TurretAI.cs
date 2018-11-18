@@ -28,8 +28,7 @@ public class TurretAI : MonoBehaviour
 
         if (GameObject.FindGameObjectWithTag("BluePlayer") != null)
         {
-            rand = Random.Range(0, 2);
-            isRed = (rand == 0);
+            isRed = (Random.Range(0, 2) == 0);
         }
         else
         {

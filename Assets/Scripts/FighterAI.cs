@@ -23,7 +23,24 @@ public class FighterAI : MonoBehaviour
     void Start ()
     {
         mySM = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreManager>();
-        isRed = (Random.Range(0, 1) == 0);
+        if (GameObject.FindGameObjectWithTag("BluePlayer") != null)
+        {
+            isRed = (Random.Range(0, 2) == 0);
+        }
+        else
+        {
+            isRed = true;
+        }
+
+        if (isRed)
+        {
+            this.GetComponent<Renderer>().material.color = Color.red;
+        }
+        else
+        {
+            this.GetComponent<Renderer>().material.color = Color.blue;
+        }
+
         pos = transform.position;
 
         //frequency = Random.Range(1.2f, 2.2f);
