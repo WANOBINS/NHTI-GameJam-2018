@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114017063384266330}
   - component: {fileID: 54403747415914416}
   - component: {fileID: 65615874860256382}
+  - component: {fileID: 114361040646700858}
   m_Layer: 0
   m_Name: EnemyFighter
   m_TagString: Fighter
@@ -58,7 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 694e154abaf7ccf4e89eb07ee9d12dab, type: 3}
+  - {fileID: 2100008, guid: e4a3d346273825542b8fb06e4cd56313, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,5 +129,19 @@ MonoBehaviour:
   frequency: 1.42
   magnitude: 30
   health: 3
+  HitFlash: {fileID: 2100000, guid: 28e4ec69be5ea964ebe9d59bbabbe764, type: 2}
+  CurMat: {fileID: 0}
+  MyMat: {fileID: 0}
   isRed: 0
   mySM: {fileID: 0}
+--- !u!114 &114361040646700858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1776328692426464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112bf0f71747b9b40987e6fe93896ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
