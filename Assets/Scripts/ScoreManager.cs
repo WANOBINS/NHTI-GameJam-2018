@@ -24,6 +24,13 @@ public class ScoreManager : MonoBehaviour
 
     }
 
+    public enum Player
+    {
+        Player1,
+        Player2,
+        Both
+    }
+
     public static readonly HiScore[] DefaultHiScores = new HiScore[MaxHiScores]
     {
         new HiScore("GOD", 50000),
@@ -55,7 +62,8 @@ public class ScoreManager : MonoBehaviour
     public const int MaxHiScores = 25;
     public const string SaveDirectory = "./SaveData/";
     public const string SaveFile = SaveDirectory + "./HiScores.json";
-    public int CurrentScore = 0;
+    public int P1CurrentScore = 0;
+    public int P2CurrentScore = 0;
 
     public List<HiScore> hiScores;
 
@@ -99,14 +107,40 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public void ResetScore()
+    public void ResetScore(Player player)
     {
-        CurrentScore = 0;
+        switch (player)
+        {
+            case Player.Player1:
+                P1CurrentScore = 0;
+                break;
+            case Player.Player2:
+                P2CurrentScore = 0;
+                break;
+            case Player.Both:
+                P1CurrentScore = 0;
+                P2CurrentScore = 0;
+                break;
+        }
+        
+        
     }
 
-    public void AddScore(int points)
+    public void AddScore(Player player, int points)
     {
-        CurrentScore += points;
+        switch (player)
+        {
+            case Player.Player1:
+                P1CurrentScore += points;
+                break;
+            case Player.Player2:
+                P2CurrentScore += points;
+                break;
+            case Player.Both:
+                P1CurrentScore += points;
+                P2CurrentScore += points;
+                break;
+        }
     }
 
     private void LoadScores()
