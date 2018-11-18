@@ -16,29 +16,33 @@ public class TurretAI : MonoBehaviour
     public GameObject targetPlayer = null;
     public GameObject Bullet = null;
     public GameObject BulletSpawn;
-    public GameObject tBase;
-    public GameObject tBarrel;
+   
     public ScoreManager mySM;
     
 	// Use this for initialization
 	void Start ()
     {
-        tBase = this.gameObject.transform.Find("Mount").gameObject;
-        tBarrel = this.gameObject.transform.Find("Turret").gameObject;
+       
         mySM = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreManager>();
 
         if (GameObject.FindGameObjectsWithTag("BluePlayer") != null)
         {
             isRed = (Random.Range(0, 1) == 0);
         }
-        else isRed = true;
-        
+        else
+        {
+            isRed = true;
+        }
+
 
         if (isRed)
         {
-            tBarrel.GetComponent<Renderer>().material.color = Color.red;
+            this.GetComponent<Renderer>().material.color = Color.red;
         }
-        else tBarrel.GetComponent<Renderer>().material.color = Color.blue;
+        else
+        {
+            this.GetComponent<Renderer>().material.color = Color.blue;
+        }
     }
 
     // Update is called once per frame
