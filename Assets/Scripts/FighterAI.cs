@@ -11,9 +11,7 @@ public class FighterAI : MonoBehaviour
     public float frequency = 20f;
     public float magnitude = 5f;
     public float health = 3;
-    public Material HitFlash;
-    public Material CurMat;
-    public Material MyMat;
+    public Color HitFlash;
 
     public bool isRed = false;
     private Vector3 pos;
@@ -48,7 +46,7 @@ public class FighterAI : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(90f, 0, 90f);
 
-        CurMat = gameObject.GetComponent<MeshRenderer>().material;
+      
 
     }
 	
@@ -57,15 +55,15 @@ public class FighterAI : MonoBehaviour
     {
         pos += transform.up * Time.deltaTime * MoveSpeed;
         transform.position = pos + transform.right * Mathf.Sin(Time.time * frequency) * magnitude;        
-        if(CurMat == HitFlash)
+        if (this.GetComponent<Renderer>().material.color == Color.white)
         {
-            Invoke("ResetMat", 0.2f);
+            Invoke("ResetMat", 0.05f);
         }
 	}
 
     void ResetMat()
     {
-        CurMat = MyMat;
+        this.GetComponent<Renderer>().material.color = Color.red;
     }
 
 
@@ -73,7 +71,7 @@ public class FighterAI : MonoBehaviour
     {
         if (other.gameObject.tag == "P1Bullet" && isRed)
         {
-            CurMat = HitFlash;
+            this.GetComponent<Renderer>().material.color = Color.white;
             health--;
             Destroy(other.gameObject);
             if (health <= 0)
@@ -85,7 +83,7 @@ public class FighterAI : MonoBehaviour
         }
         else if (other.gameObject.tag == "P2Bullet" && !isRed)
         {
-            CurMat = HitFlash;
+            this.GetComponent<Renderer>().material.color = Color.white;
             health--;
             Destroy(other.gameObject);
             if (health <= 0)

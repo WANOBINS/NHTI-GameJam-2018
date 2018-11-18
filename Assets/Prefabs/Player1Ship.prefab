@@ -661,7 +661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: 1
   myRB: {fileID: 0}
-  bounds: {x: -93, y: 93, z: -28, w: 40}
+  bounds: {x: -70, y: 70, z: -28, w: 40}
   speed: 40
   tilt: 1
   MyBullet: {fileID: 1260923322597584, guid: d558d9771df6e89499cac85d7ee296ba, type: 2}
