@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1776328692426464}
   m_LocalRotation: {x: 0.50000006, y: -0.50000006, z: 0.5, w: 0.5}
   m_LocalPosition: {x: -0, y: 0.88, z: 0}
-  m_LocalScale: {x: 1, y: 2.0333333, z: 0.4666667}
+  m_LocalScale: {x: 1.3977094, y: 2.8420088, z: 0.6522644}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -127,6 +127,6 @@ MonoBehaviour:
   MoveSpeed: 10
   frequency: 1.42
   magnitude: 30
-  health: 2
+  health: 3
   isRed: 0
   mySM: {fileID: 0}

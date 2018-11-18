@@ -10,7 +10,7 @@ public class FighterAI : MonoBehaviour
 
     public float frequency = 20f;
     public float magnitude = 5f;
-    public float health = 2;
+    public float health = 3;
 
     public bool isRed = false;
     private Vector3 pos;
@@ -60,6 +60,10 @@ public class FighterAI : MonoBehaviour
                 Destroy(gameObject);
 
             }
+        }
+        else if (other.gameObject.tag == "P1Bullet" || other.gameObject.tag == "P2Bullet")
+        {
+            Destroy(other.gameObject);
         }
     }
 }
