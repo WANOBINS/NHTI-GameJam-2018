@@ -10,12 +10,14 @@ public class TurretAI : MonoBehaviour
     public float health = 10;
     public int rand;
     
-    [SerializeField] private float range = 1f;
+    [SerializeField] private float range = 100f;
+    [SerializeField] private float bulletSpeed = 100f;
 
     Quaternion aimRotation;
     Vector3 lastTargetPos = Vector3.zero;
     public GameObject targetPlayer = null;
     public GameObject Bullet = null;
+    public GameObject BulletPrefab;
     public GameObject BulletSpawn;
    
     public ScoreManager mySM;
@@ -109,6 +111,7 @@ public class TurretAI : MonoBehaviour
     }
     private void Fire()
     {
-        Bullet = Instantiate(Bullet, BulletSpawn.transform.position, BulletSpawn.transform.rotation);
+        Bullet = Instantiate(BulletPrefab, BulletSpawn.transform.position, this.transform.rotation); // set to turrets rotation
+        Bullet.GetComponent<Rigidbody>().velocity = (transform.forward * bulletSpeed) + GetComponentInParent<Rigidbody>().velocity;
     }    
 }
