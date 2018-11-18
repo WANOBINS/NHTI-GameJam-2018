@@ -8,6 +8,7 @@ namespace Assets.Scripts.Util
 {
     public enum EnumPlayer
     {
+        Neither,
         Player1,
         Player2,
         Both

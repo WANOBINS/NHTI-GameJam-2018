@@ -68,7 +68,7 @@ public class ScoreManager : MonoBehaviour
         Directory.CreateDirectory(SaveDirectory);
         if (!File.Exists(SaveFile))
         {
-            hiScores = DefaultHiScores.ToList<HiScore>();
+            hiScores = DefaultHiScores.ToList();
 
             File.Create(SaveFile).Close();
             SaveScores();
@@ -81,23 +81,15 @@ public class ScoreManager : MonoBehaviour
 
     }
 
-    private SortedDictionary<string, int> ConvertToSortedDict(List<HiScore> list)
-    {
-        SortedDictionary<string, int> output = new SortedDictionary<string, int>();
-        foreach(HiScore hiScore in list)
-        {
-            output.Add(hiScore.Initials, hiScore.Score);
-        }
-        return output;
-    }
-
+    /// <summary>
+    /// Adds the submitted score to the hiScores list, wasteful if score is not above the lowest on the leaderboard.
+    /// </summary>
+    /// <param name="hiScore"></param>
     public void SaveScore(HiScore hiScore)
     {
-        if(hiScore.Score > hiScores.FindLowest().Score)
-        {
-            hiScores.Remove(hiScores.FindLowest());
-            hiScores.Add(hiScore);
-        }
+        hiScores.Add(hiScore);
+        SortScores();
+        hiScores.Remove(hiScores.Last());
     }
 
     public void ResetScore(EnumPlayer player)
@@ -139,10 +131,29 @@ public class ScoreManager : MonoBehaviour
     private void LoadScores()
     {
         hiScores = Newtonsoft.Json.JsonConvert.DeserializeObject<List<HiScore>>(File.ReadAllText(SaveFile));
+        SortScores();
     }
 
     private void SaveScores()
     {
+        SortScores();
         File.WriteAllText(SaveFile, Newtonsoft.Json.JsonConvert.SerializeObject(hiScores));
+    }
+
+    private void SortScores()
+    {
+        hiScores.Sort((x, y) => {
+
+            int result = x.Score.CompareTo(y.Score);
+
+            if(result == 0 && x.Initials != null && y.Initials != null)
+            {
+                return x.Initials.CompareTo(y.Initials); //Sort by Alpha
+            }
+            else
+            {
+                return result; //Sort by Score
+            }
+        });
     }
 }
