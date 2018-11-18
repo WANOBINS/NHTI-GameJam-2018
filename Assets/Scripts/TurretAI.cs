@@ -8,6 +8,7 @@ public class TurretAI : MonoBehaviour
     public bool isRed = false;
     public float speed = 1f;
     public float health = 10;
+    public int rand;
     
     [SerializeField] private float range = 1f;
 
@@ -25,14 +26,15 @@ public class TurretAI : MonoBehaviour
        
         mySM = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreManager>();
 
-        if (GameObject.FindGameObjectsWithTag("BluePlayer") != null)
+        if (GameObject.FindGameObjectWithTag("BluePlayer") != null)
         {
-            isRed = (Random.Range(0, 1) == 0);
+            rand = Random.Range(0, 2);
+            isRed = (rand == 0);
         }
         else
         {
             isRed = true;
-        }
+        } 
 
 
         if (isRed)
