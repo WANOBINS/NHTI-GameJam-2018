@@ -79,16 +79,22 @@ public class TurretAI : MonoBehaviour
             Invoke("ResetMat", 0.05f);
         }
 
-        if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) <= range)
+        if (GameObject.FindGameObjectWithTag("RedPlayer") != null)
+        {
+            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("RedPlayer").transform.position) <= range)
             {
                 targetPlayer = GameObject.FindGameObjectWithTag("RedPlayer");
             }
-   
-        else if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) <= range)
-        {
-            targetPlayer = GameObject.FindGameObjectWithTag("BluePlayer");
-        }
 
+        }
+        if (GameObject.FindGameObjectWithTag("BluePlayer"))
+        { 
+            if (Vector3.Distance(gameObject.transform.position, GameObject.FindGameObjectWithTag("BluePlayer").transform.position) <= range)
+            {
+                targetPlayer = GameObject.FindGameObjectWithTag("BluePlayer");
+            }
+
+        }
         if (targetPlayer)
         {
             if (lastTargetPos != targetPlayer.transform.position)
