@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Util;
 using UnityEngine;
 
 public class FighterAI : MonoBehaviour
@@ -9,13 +10,17 @@ public class FighterAI : MonoBehaviour
 
     public float frequency = 20f;
     public float magnitude = 5f;
+    public float health = 2;
 
-    public bool IsRed = false;
+    public bool isRed = false;
     private Vector3 pos;
-	// Use this for initialization
-	void Start ()
+    public ScoreManager mySM;
+
+    // Use this for initialization
+    void Start ()
     {
-        IsRed = (Random.Range(0, 1) == 0);
+        mySM = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreManager>();
+        isRed = (Random.Range(0, 1) == 0);
         pos = transform.position;
 
         //frequency = Random.Range(1.2f, 2.2f);
@@ -31,4 +36,30 @@ public class FighterAI : MonoBehaviour
         pos += transform.up * Time.deltaTime * MoveSpeed;
         transform.position = pos + transform.right * Mathf.Sin(Time.time * frequency) * magnitude;
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "P1Bullet" && isRed)
+        {
+            health--;
+            Destroy(other.gameObject);
+            if (health <= 0)
+            {
+                mySM.AddScore(EnumPlayer.Player1, 300);
+                Destroy(gameObject);
+
+            }
+        }
+        else if (other.gameObject.tag == "P2Bullet" && !isRed)
+        {
+            health--;
+            Destroy(other.gameObject);
+            if (health <= 0)
+            {
+                mySM.AddScore(EnumPlayer.Player2, 300);
+                Destroy(gameObject);
+
+            }
+        }
+    }
 }

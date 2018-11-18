@@ -97,6 +97,10 @@ public class TurretAI : MonoBehaviour
                 
             }
         }
+        else if(other.gameObject.tag == "P1Bullet" || other.gameObject.tag == "P2Bullet")
+        {
+            Destroy(other.gameObject);
+        }
     }
     private void Fire()
     {
