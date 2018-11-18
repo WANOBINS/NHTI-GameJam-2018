@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using WBase.Core.Extensions;
 
@@ -155,5 +156,18 @@ public class ScoreManager : MonoBehaviour
                 return result; //Sort by Score
             }
         });
+    }
+
+    private string GetHiScoresString()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        foreach(HiScore hiScore in hiScores)
+        {
+            stringBuilder.Append(hiScore.Initials);
+            stringBuilder.Append("\t");
+            stringBuilder.Append(hiScore.Score);
+            stringBuilder.Append(Environment.NewLine);
+        }
+        return stringBuilder.ToString();
     }
 }
