@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65093370110878798}
   - component: {fileID: 23843236781773180}
   - component: {fileID: 54181330634806502}
+  - component: {fileID: 114305934279961892}
   m_Layer: 0
   m_Name: RedBullet
   m_TagString: P1Bullet
@@ -111,3 +112,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114305934279961892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1260923322597584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f80a6300dbaf64db8ec13d0a6e51e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
