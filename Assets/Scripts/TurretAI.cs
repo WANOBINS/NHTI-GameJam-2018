@@ -6,7 +6,7 @@ public class TurretAI : MonoBehaviour
 {
     public bool isRed = false;
     public float speed = 1f;
-   
+    public float health = 10;
     
     [SerializeField] private float range = 1f;
 

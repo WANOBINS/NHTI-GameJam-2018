@@ -667,4 +667,4 @@ MonoBehaviour:
   MyBullet: {fileID: 1260923322597584, guid: d558d9771df6e89499cac85d7ee296ba, type: 2}
   Gun1: {fileID: 4542153712759214}
   Gun2: {fileID: 4841777017746764}
-  ShotSpeed: 2000
+  ShotSpeed: 5000
