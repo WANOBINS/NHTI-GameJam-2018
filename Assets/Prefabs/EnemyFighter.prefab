@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114017063384266330}
   - component: {fileID: 54403747415914416}
   - component: {fileID: 65615874860256382}
+  - component: {fileID: 114361040646700858}
   m_Layer: 0
   m_Name: EnemyFighter
   m_TagString: Fighter
@@ -39,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1776328692426464}
   m_LocalRotation: {x: 0.50000006, y: -0.50000006, z: 0.5, w: 0.5}
   m_LocalPosition: {x: -0, y: 0.88, z: 0}
-  m_LocalScale: {x: 1, y: 2.0333333, z: 0.4666667}
+  m_LocalScale: {x: 1.3977094, y: 2.8420088, z: 0.6522644}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,7 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 694e154abaf7ccf4e89eb07ee9d12dab, type: 3}
+  - {fileID: 2100008, guid: e4a3d346273825542b8fb06e4cd56313, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,7 +111,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5997005, y: 2.0853784, z: 1.9484164}
+  m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0.09816754, y: -0.21148458, z: -0.32337266}
 --- !u!114 &114017063384266330
 MonoBehaviour:
@@ -127,4 +128,20 @@ MonoBehaviour:
   MoveSpeed: 10
   frequency: 1.42
   magnitude: 30
-  IsRed: 0
+  health: 3
+  HitFlash: {fileID: 2100000, guid: 28e4ec69be5ea964ebe9d59bbabbe764, type: 2}
+  CurMat: {fileID: 0}
+  MyMat: {fileID: 0}
+  isRed: 0
+  mySM: {fileID: 0}
+--- !u!114 &114361040646700858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1776328692426464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112bf0f71747b9b40987e6fe93896ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
