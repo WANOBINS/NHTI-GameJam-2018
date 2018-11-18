@@ -15,6 +15,8 @@ public class PlayerScript : MonoBehaviour
     public Transform Gun1;
     public Transform Gun2;
 
+    public GameManager myGM;
+
     public float ShotSpeed = 10f;
 
 
@@ -22,6 +24,8 @@ public class PlayerScript : MonoBehaviour
     void Start ()
     {
         myRB = transform.GetComponent<Rigidbody>();
+        myGM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+
 	}
 
     void FixedUpdate()
@@ -90,7 +94,10 @@ public class PlayerScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Fighter")
         {
-
+            if(Player == 1)
+            {
+                myGM.P1Lives--;
+            }
         }
     }
 }

@@ -63,7 +63,14 @@ public class FighterAI : MonoBehaviour
 
     void ResetMat()
     {
-        this.GetComponent<Renderer>().material.color = Color.red;
+        if (isRed)
+        {
+            this.GetComponent<Renderer>().material.color = Color.red;
+        }
+        else
+        {
+            this.GetComponent<Renderer>().material.color = Color.blue;
+        }
     }
 
 
