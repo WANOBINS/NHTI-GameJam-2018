@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
+    public bool DebugQuit = true;
     public bool GameOver = false;
     public ScoreManager ScoreManager;
 
@@ -22,5 +24,15 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	}
+        if (DebugQuit && Input.GetKey(KeyCode.Escape))
+        {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#elif UNITY_WEBPLAYER
+                EditorApplication.OpenURL("https://google.com");
+#else
+                Application.Quit();
+#endif
+        }
+    }
 }
